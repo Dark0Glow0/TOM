@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Suizo — Operaciones de Torneo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">SW</span>
+      <div>
+        <h1>Sistema Suizo</h1>
+        <p id="tournamentNameTag">Sin torneo activo</p>
+      </div>
+    </div>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="setup">Configuración</button>
+      <button class="tab" data-tab="players">Jugadores <span id="countPlayers" class="tab-count">0</span></button>
+      <button class="tab" data-tab="rounds">Rondas</button>
+      <button class="tab" data-tab="standings">Clasificación</button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="resetBtn" class="btn-ghost">Reiniciar torneo</button>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <!-- SETUP -->
+    <section id="tab-setup" class="panel active">
+      <header class="panel-head">
+        <h2>Configuración del torneo</h2>
+        <p>Define el nombre y el número total de rondas suizas. El desempate se calcula automáticamente con OP% / OP OP%.</p>
+      </header>
+      <div class="form-grid">
+        <label>
+          <span>Nombre del torneo</span>
+          <input type="text" id="tName" placeholder="Ej. Abierto de Otoño 2026">
+        </label>
+        <label>
+          <span>Rondas totales</span>
+          <input type="number" id="tRounds" min="1" max="20" value="5">
+        </label>
+      </div>
+      <button id="saveSetupBtn" class="btn-primary">Guardar configuración</button>
+    </section>
+
+    <!-- PLAYERS -->
+    <section id="tab-players" class="panel">
+      <header class="panel-head">
+        <h2>Jugadores</h2>
+        <p>Agrega participantes antes de iniciar la ronda 1. El rating es opcional y solo ordena el emparejamiento inicial.</p>
+      </header>
+
+      <form id="playerForm" class="inline-form">
+        <input type="text" id="pName" placeholder="Nombre del jugador" required>
+        <input type="number" id="pRating" placeholder="Rating (opcional)">
+        <button type="submit" class="btn-primary">Añadir</button>
+      </form>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>#</th><th>Jugador</th><th>Rating</th><th>Puntos</th><th>Byes</th><th></th></tr>
+        </thead>
+        <tbody id="playersBody"></tbody>
+      </table>
+      <p id="playersEmpty" class="empty-state">Aún no hay jugadores. Añade al menos 2 para generar la ronda 1.</p>
+    </section>
+
+    <!-- ROUNDS -->
+    <section id="tab-rounds" class="panel">
+      <header class="panel-head">
+        <h2>Rondas</h2>
+        <p id="roundStatus">Ronda 0 de 0</p>
+      </header>
+
+      <button id="genRoundBtn" class="btn-primary">Generar ronda 1</button>
+
+      <div id="roundsContainer"></div>
+    </section>
+
+    <!-- STANDINGS -->
+    <section id="tab-standings" class="panel">
+      <header class="panel-head">
+        <h2>Clasificación</h2>
+        <p>Ordenado por puntos y desempate Buchholz.</p>
+      </header>
+      <table class="data-table">
+        <thead>
+          <tr><th>Pos</th><th>Jugador</th><th>Puntos</th><th>V-D-E</th><th>OP%</th><th>OP OP%</th><th>Rating</th></tr>
+        </thead>
+        <tbody id="standingsBody"></tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
