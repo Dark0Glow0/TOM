@@ -12,7 +12,7 @@ TOM is a Swiss tournament system for trading card games, inspired by the Pokémo
 - Data saved in the browser
 
  ## Try it online
- You can use TOM directly in your browser, no download needed: 👉 [Tournament Operations Manager](https://dark0glow0.github.io/TOM-Presonalizado/)
+ You can use TOM directly in your browser, no download needed: 👉 [Tournament Operations Manager](https://dark0glow0.github.io/TOM/)
 
  ## Credits and License
  
